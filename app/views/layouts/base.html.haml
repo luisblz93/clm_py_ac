@@ -1,0 +1,162 @@
+!!!
+/[if lt IE 7]
+  <html class="lt-ie9 lt-ie8 lt-ie7" lang="es">
+/[if IE 7]
+  <html class="lt-ie9 lt-ie8" lang="es">
+/[if IE 8]
+  <html class="lt-ie9" lang="es">
+/
+  [if gt IE 8]>
+  <!
+%html{lang: "es"}
+  /
+    <![endif]
+  %head
+    %meta{charset: "utf-8"}
+    %title= @titulo + ' - Admin Church'
+    %meta{content: "CLM Developers", name: "author"}
+    %meta{content: "width=device-width, initial-scale=1.0, user-scalable=no", name: "viewport"}
+    %meta{content: "Admin Church", name: "description"}
+    %meta{content: "Admin Chuch, CLM Developers, Administración Eclesiástica, Iglesia", name: "keywords"}
+    %link{href: "/images/favicon.ico", rel: "shortcut icon"}
+    = javascript_include_tag "html5-trunk.js"
+    = stylesheet_link_tag :application, :media => "all"
+    /[if lte IE 7]
+      = javascript_include_tag "icomoon/lte-ie7.js"
+    =yield :bloquecss
+
+  %body
+    / Header start
+    %header
+      / Logo start
+      .logo
+        = image_tag('logo-ac-103.png', alt: "Admin Church", style: "border-bottom: 1px solid #383838;") 
+      / Logo end
+      / Optional Dropdown start
+      #optional-dropdown
+        %ul
+          %li
+            %a{href: index_path}
+              %span.fs1{"aria-hidden" => "true", "data-icon" => ""}
+      / Optional Dropdown end
+      / Mini navigation start
+      #mini-nav
+        %ul
+          %li.hidden-sm
+            %a{href: "http://facebook.com/adminchurch", target: "_blank"}
+              %span.fs1{"aria-hidden" => "true", "data-icon" => ""}
+          %li.hidden-sm
+            %a{href: ayuda_path}
+              %span.text-label Ayuda
+              %span.fs1{"aria-hidden" => "true", "data-icon" => ""}
+          %li.hidden-sm
+            %a{href: new_sugerencia_path}
+              %span.text-label Sugerencias
+              %span.fs1{"aria-hidden" => "true", "data-icon" => ""}
+          %li.hidden-sm
+            %a{href: "#"}
+              %span.text-label #{@nombreusuario}
+              %span.fs1{"aria-hidden" => "true", "data-icon" => ""}
+            %ul
+              %li
+                %a{href: destroy_user_session_path} 
+                  %span.fs1{"aria-hidden" => "true", "data-icon" => ""}
+                  Logout
+                %span.clearfix
+      / Mini navigation end
+    / Header end
+    / Main Container start
+    .main-container
+      / Mian navigation start
+      #mainnav
+        %ul
+          - if @menuvariable["persona"]
+            %li#mpersona
+              %span
+              %a{href: persona_path}
+                .icon
+                  %span.fs1{"aria-hidden" => "true", "data-icon" => ""}
+                Persona
+          - if @menuvariable["diezmo"]
+            %li#mdiezmo
+              %span
+              %a{href: diezmos_path}
+                .icon
+                  %span.fs1{"aria-hidden" => "true", "data-icon" => ""}
+                Diezmos
+          - if @menuvariable["ofrenda"]
+            %li#mofrenda
+              %span
+              %a{href: ofrendas_path}
+                .icon
+                  %span.fs1{"aria-hidden" => "true", "data-icon" => ""}
+                Ofrendas
+          - if @menuvariable["asistencia"]
+            %li#masistencia
+              %span
+              %a{href: asistencia_path}
+                .icon
+                  %span.fs1{"aria-hidden" => "true", "data-icon" => ""}
+                Asistencia
+          - if @menuvariable["informacion"]
+            %li#minformacion
+              %span
+              %a{href: "#"}
+                .icon
+                  %span.fs1{"aria-hidden" => "true", "data-icon" => ""}
+                Información
+              %ul
+                %li
+                  %a{href: dashboard_asistencia_path} Asistencia
+                %li
+                  %a{href: dashboard_diezmo_path} Diezmos
+                %li
+                  %a{href: dashboard_ofrenda_path} Ofrendas
+                %li
+                  %a{href: dashboard_membresia_path} Miembros/Visitantes
+          - if @menuvariable["reporte"]
+            %li#mreporte
+              %span
+              %a{href: "#"}
+                .icon
+                  %span.fs1{"aria-hidden" => "true", "data-icon" => ""}
+                Reportes
+              %ul
+                %li
+                  %a{href: reporte_asistencia_path} Asistencia
+                %li
+                  %a{href: reporte_diezmo_path} Diezmos
+                %li
+                  %a{href: reporte_ofrenda_path} Ofrendas
+                %li
+                  %a{href: reporte_membresia_path} Miembros/Visitantes
+                / %li
+                /  %a{href: reporte_servicios_path} Servicios
+          - if @menuvariable["configuracion"]
+            %li#mconfiguracion
+              %span
+              %a{href: "#"}
+                .icon
+                  %span.fs1{"aria-hidden" => "true", "data-icon" => ""}
+                Configuración
+              %ul
+                %li
+                  %a{href: configuracion_datos_generales_path} Datos Generales
+                %li
+                  %a{href: configuracion_lugar_path} Lugar
+                %li
+                  %a{href: configuracion_usuario_path} Usuarios
+                %li
+                  %a{href: configuracion_servicios_path} Servicios
+                %li
+                  %a{href: configuracion_categoria_path} Categorías
+          %li
+            %a{href: donaciones_path}
+              = image_tag('dona-100-240.png', alt: "Donar", style: "width:100%;")
+      / Mian navigation end
+    =yield
+    / Scripts
+    :javascript
+      urlES = "/dt_ES.txt"
+    = javascript_include_tag :application
+    =yield :bloquejavascript
