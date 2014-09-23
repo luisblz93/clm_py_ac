@@ -110,26 +110,13 @@
                       %th.hidden-phone{style: "width:33%"} Acciones
                   %tbody                  
               .clearfix
+
+
               .form-group
-                %label.col-lg-2.control-label{for: "departamento"} Departamento
+                %label.col-lg-2.control-label{for: "procedencia"} Procedencia
                 .col-lg-10
-                  .row
-                    .col-lg-2.col-sm-2
-                      %select#departamento.form-control{name: "departamento"}
-                    %label.col-lg-2.col-sm-2.control-label Provincia
-                    .col-lg-2.col-sm-2
-                      %select#provincia.form-control{name: "provincia"}
-                    %label.col-lg-2.col-sm-2.control-label Distrito
-                    .col-lg-2.col-sm-2
-                      %select#distrito.form-control{name: "distrito"}
-              .form-group
-                %label.col-lg-2.control-label{for: "direccion"} Dirección
-                .col-lg-10
-                  %input#direccion.form-control{name: "direccion", type: "text",class:"validate[required]"}
-              .form-group
-                %label.col-lg-2.control-label{for: "referencia"} Referencia
-                .col-lg-10
-                  %input#referencia.form-control{name: "referencia", type: "text"}
+                  %input#procedencia.form-control{name: "procedencia", type: "text",class:"validate[required]"}
+             
             %div
               .form-group
                 %label.col-lg-2.control-label{for: "lugar"} Lugar
@@ -284,6 +271,10 @@
   / Row end
 - content_for :bloquejavascript do
   = javascript_include_tag "custom-tables.js"
+  / Ubigeo
+  = javascript_include_tag "jquery.min.js"
+  = javascript_include_tag "ubigeo/jquery.geocomplete.js"
+  = javascript_include_tag "ubigeo/js"
   / Editable Inputs 
   = javascript_include_tag "wysiwyg/bootstrap-wysihtml5.js"
   / Custom Js 
