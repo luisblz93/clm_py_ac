@@ -114,8 +114,25 @@
 
               .form-group
                 %label.col-lg-2.control-label{for: "procedencia"} Procedencia
-                .col-lg-10
-                  %input#procedencia.form-control{name: "procedencia", type: "text",class:"validate[required]"}
+                .col-lg-8
+                  %input#geocomplete.form-control{name: "geocomplete", type: "text", placeholder:"Trujillo", class:"validate[required]"}
+
+              .form-group.hidden
+                %ul
+                  %li 
+                    %span{"data-geo"=> "name"}
+                  %li
+                    %span{"data-geo"=> "location"}
+                  %li
+                    %span{"data-geo"=> "locality"}
+                  %li
+                    %span{"data-geo"=> "country_short"}
+                  %li
+                    %span{"data-geo"=> "country"}
+                  %li
+                    %span{"data-geo"=> "administrative_area_level_1"}
+          
+            .map_canvas
              
             %div
               .form-group
@@ -272,9 +289,9 @@
 - content_for :bloquejavascript do
   = javascript_include_tag "custom-tables.js"
   / Ubigeo
-  = javascript_include_tag "jquery.min.js"
+  = javascript_include_tag "http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"
   = javascript_include_tag "ubigeo/jquery.geocomplete.js"
-  = javascript_include_tag "ubigeo/js"
+  = javascript_include_tag "ubigeo/ubi.js"
   / Editable Inputs 
   = javascript_include_tag "wysiwyg/bootstrap-wysihtml5.js"
   / Custom Js 
